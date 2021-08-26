@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CLABE Number Validator</title>
+    <script>
+        function toggleMessage(status) {
+            if (status == "Valid") {
+                document.getElementById("success").style = "display: block";
+                document.getElementById("error").style = "display: none";
+            } else {
+                document.getElementById("error").style = "display: block";
+                document.getElementById("success").style = "display: none";
+            }
+        }
+
+        async function validate() {
+            if (document.getElementById("clabeNumer") && document.getElementById("clabeNumer").value && document.getElementById("clabeNumer").value.trim().length == 18)
+                var response = await fetch('/api/clabe/' + document.getElementById("clabeNumer").value.trim(), {
+                    method: "GET",
+                    headers: {"Content-type": "application/text;charset=UTF-8"}
+                });
+
+            if(response)
+             toggleMessage(await response.text());
+        }
+
+
+    </script>
+    <style>
+        .container {
+            margin: auto;
+            width: 30%;
+            border: 3px solid green;
+            padding: 10px;
+        }
+
+        .button {
+            background-color: darkblue;
+            padding: 10px;
+            color: white;
+            width: 200px;
+        }
+
+        .button-ctn {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .input {
+            height: 26px;
+            padding: 4px;
+            font-size: 14px;
+            width: 300px;
+        }
+
+        label {
+            font-family: SansSerif;
+            font-size: 12px;
+        }
+
+        .error {
+            height: 22px;
+            margin-top: 10px;
+            padding: 10px;
+            width: 294px;
+            display: none;
+            background-color: red;
+            color: white;
+        }
+
+        .success {
+            height: 22px;
+            margin-top: 10px;
+            display: none;
+            width: 294px;
+            padding: 10px;
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div>
+        <label class="">Clabe Number</label>
+    </div>
+    <div>
+        <input type="input" class="input" placeholder="Please enter 18 digit number" id="clabeNumer" maxlength="18"
+               required>
+    </div>
+    <div id="error"  class="error" style="">
+        <span>Invalid Number</span>
+    </div>
+    <div id="success" class="success" style="">
+        <span>Valid Number</span>
+    </div>
+    <div class="button-ctn">
+        <button class="button" onclick="validate()">Validate</button>
+    </div>
+</div>
+</body>
+</html>
