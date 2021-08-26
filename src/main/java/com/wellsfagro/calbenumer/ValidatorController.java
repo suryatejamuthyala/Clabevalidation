@@ -13,11 +13,11 @@ import static org.springframework.http.HttpStatus.OK;
 public class ValidatorController {
     @GetMapping
     public ResponseEntity<String> validate(@PathVariable String number) {
-         if(new ClabeNumerValidator().isClabeNumValid(number)){
-              return ResponseEntity
-                     .status(OK)
-                     .body("Valid");
-         }
+        if (new ClabeNumerValidator().isClabeNumValid(number)) {
+            return ResponseEntity
+                    .status(OK)
+                    .body("Valid");
+        }
         return ResponseEntity
                 .status(OK)
                 .body("Invalid");
