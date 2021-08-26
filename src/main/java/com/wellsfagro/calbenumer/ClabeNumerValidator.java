@@ -24,8 +24,8 @@ public class ClabeNumerValidator {
             } else if (index % 3 == 1) {
                 clabeAsIntArray[index] = clabeAsIntArray[index] * 7;
                 sumofproducts += clabeAsIntArray[index] % 10;
-            } else if (index % 3 == 2 && index != 17) {
-                clabeAsIntArray[index] = clabeAsIntArray[index] * 1;
+            } else if (index != 17) {
+                clabeAsIntArray[index] = clabeAsIntArray[index];
                 sumofproducts += clabeAsIntArray[index] % 10;
             }
         }
@@ -33,11 +33,7 @@ public class ClabeNumerValidator {
         int controlDigit = (10 - sumMod) % 10;
 
         System.out.println("controldigit:" + controlDigit);
-        if (clabeAsIntArray[17] == controlDigit) {
-            result = true;
-        } else {
-            result = false;
-        }
+        result = clabeAsIntArray[17] == controlDigit;
         return result;
 
     }
