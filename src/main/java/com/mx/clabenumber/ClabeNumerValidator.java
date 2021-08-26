@@ -1,4 +1,4 @@
-package com.wellsfagro.calbenumer;
+package com.mx.clabenumber;
 
 import java.util.stream.Stream;
 
